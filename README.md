@@ -140,7 +140,8 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
             gap: 30px;
         }
 
@@ -168,7 +169,7 @@
 
         .card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
             background-color: #eee;
         }
@@ -180,7 +181,7 @@
 
         /* 4. 모달 (주문 팝업) */
         .modal {
-            display: none; /* 기본 숨김 */
+            display: none;
             position: fixed; z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.6);
@@ -261,20 +262,11 @@
         <div class="menu-grid">
             <div class="card" onclick="openModal()">
                 <div class="badge">No.1 BEST</div>
-                <img src="https://images.unsplash.com/photo-1619250907584-6992d4f208df?q=80&w=1505&auto=format&fit=crop" alt="싸이버거">
+                <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop" alt="싸이버거">
                 <div class="card-body">
                     <h3 data-i18n="menu1_name">싸이버거</h3>
                     <p data-i18n="menu1_desc">매콤바삭한 통다리살 패티가 통째로! 맘스터치 시그니처.</p>
                     <div class="price">₩4,600</div>
-                </div>
-            </div>
-
-            <div class="card" onclick="openModal()">
-                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=1471&auto=format&fit=crop" alt="인크레더블 버거">
-                <div class="card-body">
-                    <h3 data-i18n="menu2_name">인크레더블 버거</h3>
-                    <p data-i18n="menu2_desc">프리미엄 더블햄, 계란프라이, 통다리살의 환상적인 조합.</p>
-                    <div class="price">₩5,700</div>
                 </div>
             </div>
 
@@ -289,7 +281,7 @@
             </div>
 
             <div class="card" onclick="openModal()">
-                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=1470&auto=format&fit=crop" alt="치킨">
+                <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop" alt="치킨">
                 <div class="card-body">
                     <h3 data-i18n="menu4_name">후라이드 치킨</h3>
                     <p data-i18n="menu4_desc">겉바속촉의 정석. 클래식한 맘스터치 치킨.</p>
@@ -314,7 +306,6 @@
     </footer>
 
     <script>
-        // 1. 언어 데이터셋 (Korean, English, Japanese)
         const translations = {
             ko: {
                 mode: "다크모드",
@@ -325,8 +316,6 @@
                 menuSub: "가성비 그 이상의 감동을 만나보세요",
                 menu1_name: "싸이버거",
                 menu1_desc: "매콤바삭한 통다리살 패티가 통째로! 맘스터치 시그니처.",
-                menu2_name: "인크레더블 버거",
-                menu2_desc: "프리미엄 더블햄, 계란프라이, 통다리살의 환상적인 조합.",
                 menu3_name: "케이준 양념감자",
                 menu3_desc: "한 번 맛보면 멈출 수 없는 맘스터치만의 바삭한 감자튀김.",
                 menu4_name: "후라이드 치킨",
@@ -344,8 +333,6 @@
                 menuSub: "Experience the value beyond price.",
                 menu1_name: "Thigh Burger",
                 menu1_desc: "Spicy & crispy whole chicken thigh patty! Signature menu.",
-                menu2_name: "Incredible Burger",
-                menu2_desc: "Fantastic combo of ham, fried egg, and chicken thigh.",
                 menu3_name: "Cajun Fries",
                 menu3_desc: "Crispy fries with special seasoning you can't stop eating.",
                 menu4_name: "Fried Chicken",
@@ -363,8 +350,6 @@
                 menuSub: "コスパ以上の感動に出会ってください。",
                 menu1_name: "サイバーガー",
                 menu1_desc: "辛くてサクサクの鶏もも肉パティが丸ごと！代表メニュー。",
-                menu2_name: "インクレディブルバーガー",
-                menu2_desc: "プレミアムハム、目玉焼き、鶏もも肉の幻想的な調和。",
                 menu3_name: "ケイジャンポテト",
                 menu3_desc: "一度食べたら止まらないマムズタッチだけの味付けポテト。",
                 menu4_name: "フライドチキン",
@@ -375,14 +360,10 @@
             }
         };
 
-        // 2. 다크모드 토글 기능
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            const icon = document.querySelector('.btn-icon i');
-            // 아이콘 변경 (달 <-> 해) 로직은 생략하거나 추가 가능
         }
 
-        // 3. 언어 변경 기능
         function changeLanguage(lang) {
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(element => {
@@ -393,7 +374,6 @@
             });
         }
 
-        // 4. 모달 기능
         function openModal() {
             document.getElementById('orderModal').style.display = 'flex';
         }
@@ -401,7 +381,6 @@
             document.getElementById('orderModal').style.display = 'none';
         }
 
-        // 모달 바깥 클릭 시 닫기
         window.onclick = function(event) {
             const modal = document.getElementById('orderModal');
             if (event.target == modal) {
