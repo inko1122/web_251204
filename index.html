@@ -99,7 +99,6 @@
     .sns-icons a { font-size: 1.5rem; color: var(--footer-text); transition: color 0.3s; }
     .sns-icons a:hover { color: var(--primary); }
     
-    /* [NEW] 토스트 팝업 스타일 */
     .toast {
         visibility: hidden;
         min-width: 250px;
@@ -124,11 +123,55 @@
         bottom: 50px;
     }
 
+    /* [NEW] 브랜드 스토리 모달 스타일 (전체화면 느낌) */
+    .brand-modal-content {
+        max-width: 800px;
+        width: 90%;
+        height: 80vh;
+        overflow-y: auto;
+        padding: 0;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+    }
+    .brand-header {
+        position: relative;
+        height: 300px;
+        background: url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1665&auto=format&fit=crop') center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+    .brand-header h2 {
+        font-size: 3rem;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        z-index: 2;
+    }
+    .brand-header::after {
+        content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.4);
+    }
+    .brand-text {
+        padding: 40px;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: var(--text-main);
+    }
+    .brand-text h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 20px; font-weight: 900;}
+    .close-brand {
+        position: absolute; top: 20px; right: 20px; z-index: 10;
+        background: rgba(0,0,0,0.5); color: white; border-radius: 50%; width: 40px; height: 40px;
+        font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer;
+    }
+
     @media(max-width: 768px) {
         .nav-menu { display: none; }
         .hamburger { display: block; }
         .hero h1 { font-size: 2rem; }
         .fab-cart { width: 60px; height: 60px; bottom: 20px; right: 20px; font-size: 1.5rem; }
+        .brand-header h2 { font-size: 2rem; }
+        .brand-text { padding: 20px; }
     }
 </style>
 </head>
@@ -137,10 +180,10 @@
         <div class="header-inner">
             <div class="logo">MOM'S <span>TOUCH</span></div>
             <ul class="nav-menu">
-                <li onclick="showToast('브랜드 스토리 준비 중입니다.')" data-i18n="nav_story">브랜드 스토리</li>
+                <li onclick="openBrandStory()" data-i18n="nav_story">브랜드 스토리</li>
                 <li onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})" data-i18n="nav_menu">메뉴소개</li>
-                <li onclick="showToast('가까운 매장을 검색합니다.')" data-i18n="nav_store">매장찾기</li>
-                <li onclick="showToast('고객센터 연결 중...')" data-i18n="nav_cs">고객센터</li>
+                <li onclick="window.open('https://www.momstouch.co.kr/store/search.php')" data-i18n="nav_store">매장찾기</li>
+                <li onclick="window.open('https://www.momstouch.co.kr/customer/inquiry.php')" data-i18n="nav_cs">고객센터</li>
             </ul>
             <div class="utils">
                 <button class="btn-icon" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
@@ -160,11 +203,11 @@
             <button class="close-sidebar" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
         </div>
         <ul class="sidebar-menu">
-            <li onclick="showToast('준비 중입니다.')" data-i18n="nav_story">브랜드 스토리</li>
+            <li onclick="toggleSidebar(); openBrandStory()" data-i18n="nav_story">브랜드 스토리</li>
             <li onclick="toggleSidebar(); document.querySelector('.container').scrollIntoView({behavior:'smooth'})" data-i18n="nav_menu">메뉴소개</li>
-            <li onclick="showToast('매장 찾기 기능은 준비 중입니다.')" data-i18n="nav_store">매장찾기</li>
-            <li onclick="showToast('이벤트 페이지 준비 중')" data-i18n="nav_event">이벤트</li>
-            <li onclick="showToast('고객센터')" data-i18n="nav_cs">고객센터</li>
+            <li onclick="window.open('https://www.momstouch.co.kr/store/search.php')" data-i18n="nav_store">매장찾기</li>
+            <li onclick="window.open('https://www.momstouch.co.kr/brand/notice_list.php')" data-i18n="nav_event">이벤트</li>
+            <li onclick="window.open('https://www.momstouch.co.kr/customer/inquiry.php')" data-i18n="nav_cs">고객센터</li>
         </ul>
         <div class="sidebar-utils">
             <span style="font-weight:bold; font-size:0.9rem;" data-i18n="settings">설정</span>
@@ -180,6 +223,28 @@
     </div>
 
     <div id="toast" class="toast">알림 메시지</div>
+
+    <div id="brandModal" class="modal">
+        <div class="modal-content brand-modal-content">
+            <button class="close-brand" onclick="closeBrandStory()"><i class="fas fa-times"></i></button>
+            <div class="brand-header">
+                <h2>MOM'S TOUCH</h2>
+            </div>
+            <div class="brand-text">
+                <h3 data-i18n="brand_title">빠르게보다 올바르게</h3>
+                <p data-i18n="brand_desc" style="white-space: pre-line;">
+                    맘스터치는 단순한 패스트푸드가 아닙니다.
+                    우리는 주문 후 조리하는 방식을 고집합니다.
+                    
+                    신선한 재료와 정성스러운 손길로
+                    엄마의 마음을 담아 따뜻한 한 끼를 제공합니다.
+                    
+                    가성비를 넘어 가심비까지,
+                    대한민국 대표 버거 브랜드 맘스터치입니다.
+                </p>
+            </div>
+        </div>
+    </div>
 
     <section class="hero reveal">
         <h1 data-i18n="heroTitle">압도적인 크기, 싸이버거</h1>
@@ -264,27 +329,26 @@
             <div class="footer-col">
                 <h4 data-i18n="footer_company">회사 소개</h4>
                 <ul>
-                    <li data-i18n="nav_story">브랜드 스토리</li>
-                    <li data-i18n="footer_franchise">가맹점 문의</li>
-                    <li data-i18n="footer_recruit">채용 정보</li>
-                    <li data-i18n="footer_map">찾아오시는 길</li>
+                    <li onclick="openBrandStory()" data-i18n="nav_story">브랜드 스토리</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/franchise/process.php')" data-i18n="footer_franchise">가맹점 문의</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/brand/recruit.php')" data-i18n="footer_recruit">채용 정보</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/store/search.php')" data-i18n="footer_map">찾아오시는 길</li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4 data-i18n="footer_support">고객 지원</h4>
                 <ul>
-                    <li data-i18n="footer_terms">이용약관</li>
-                    <li data-i18n="footer_privacy">개인정보처리방침</li>
-                    <li data-i18n="nav_cs">고객센터</li>
-                    <li data-i18n="footer_faq">자주 묻는 질문</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/member/terms.php')" data-i18n="footer_terms">이용약관</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/member/privacy.php')" data-i18n="footer_privacy">개인정보처리방침</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/customer/inquiry.php')" data-i18n="nav_cs">고객센터</li>
+                    <li onclick="window.open('https://www.momstouch.co.kr/customer/faq.php')" data-i18n="footer_faq">자주 묻는 질문</li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Follow Us</h4>
                 <div class="sns-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/momstouch.love" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/user/momstouchfnc" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -309,7 +373,9 @@
                 btn_cancel: "취소", btn_add: "장바구니 담기", cart_title: "장바구니", cart_empty: "장바구니가 비었습니다.", btn_more: "더 담기", btn_pay: "결제하기",
                 footer_company: "회사 소개", footer_franchise: "가맹점 문의", footer_recruit: "채용 정보", footer_map: "찾아오시는 길",
                 footer_support: "고객 지원", footer_terms: "이용약관", footer_privacy: "개인정보처리방침", footer_faq: "자주 묻는 질문",
-                footer_addr: "서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니", footer_ceo: "대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234"
+                footer_addr: "서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니", footer_ceo: "대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234",
+                brand_title: "빠르게보다 올바르게",
+                brand_desc: "맘스터치는 단순한 패스트푸드가 아닙니다.\n우리는 주문 후 조리하는 방식을 고집합니다.\n\n신선한 재료와 정성스러운 손길로\n엄마의 마음을 담아 따뜻한 한 끼를 제공합니다.\n\n가성비를 넘어 가심비까지,\n대한민국 대표 버거 브랜드 맘스터치입니다."
             },
             en: { 
                 heroTitle: "Overwhelming Size, Thigh Burger", heroSub: "Standard of fresh handmade burgers cooked to order.", orderBtn: "Order Now",
@@ -322,7 +388,9 @@
                 btn_cancel: "Cancel", btn_add: "Add to Cart", cart_title: "My Cart", cart_empty: "Your cart is empty.", btn_more: "Add More", btn_pay: "Checkout",
                 footer_company: "About Us", footer_franchise: "Franchise", footer_recruit: "Careers", footer_map: "Location",
                 footer_support: "Support", footer_terms: "Terms of Use", footer_privacy: "Privacy Policy", footer_faq: "FAQ",
-                footer_addr: "5F, 1234 Cheonho-daero, Gangdong-gu, Seoul, Korea", footer_ceo: "CEO: Kim Moms | Reg. No: 123-45-67890 | CS: 1588-1234"
+                footer_addr: "5F, 1234 Cheonho-daero, Gangdong-gu, Seoul, Korea", footer_ceo: "CEO: Kim Moms | Reg. No: 123-45-67890 | CS: 1588-1234",
+                brand_title: "Quality over Speed",
+                brand_desc: "Mom's Touch is not just fast food.\nWe insist on cooking after ordering.\n\nWith fresh ingredients and careful hands,\nwe provide a warm meal with a mother's heart.\n\nBeyond cost-effectiveness to satisfaction,\nKorea's representative burger brand, Mom's Touch."
             },
             jp: { 
                 heroTitle: "圧倒的な大きさ、サイバーガー", heroSub: "注文後すぐに調理する新鮮な手作りバーガーの基準。", orderBtn: "注文する",
@@ -335,7 +403,9 @@
                 btn_cancel: "キャンセル", btn_add: "カートに追加", cart_title: "カート", cart_empty: "カートは空です。", btn_more: "買い物を続ける", btn_pay: "お会計",
                 footer_company: "会社概要", footer_franchise: "加盟店募集", footer_recruit: "採用情報", footer_map: "アクセス",
                 footer_support: "カスタマーサポート", footer_terms: "利用規約", footer_privacy: "個人情報処理方針", footer_faq: "よくある質問",
-                footer_addr: "ソウル特別市 江東区 千戸大路 1234, 5階 (株)マムズタッチ＆カンパニー", footer_ceo: "代表取締役: キム・マムス | 事業者番号: 123-45-67890"
+                footer_addr: "ソウル特別市 江東区 千戸大路 1234, 5階 (株)マムズタッチ＆カンパニー", footer_ceo: "代表取締役: キム・マムス | 事業者番号: 123-45-67890",
+                brand_title: "速さよりも正しさを",
+                brand_desc: "マムズタッチは単なるファーストフードではありません。\n私たちは注文後の調理にこだわっています。\n\n新鮮な材料と丁寧な手つきで\n母の心を込めて温かい食事を提供します。\n\nコスパを超えた満足感まで、\n韓国を代表するバーガーブランド、マムズタッチです。"
             }
         };
 
@@ -348,19 +418,12 @@
         let cart = []; 
         let currentProductId = null;
 
-        // [NEW] 설정 로드 (페이지 로드 시 실행)
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. 저장된 언어 불러오기
             const savedLang = localStorage.getItem('momstouch_lang');
-            if(savedLang) {
-                changeLanguage(savedLang);
-            }
+            if(savedLang) changeLanguage(savedLang);
 
-            // 2. 저장된 테마 불러오기
             const savedTheme = localStorage.getItem('momstouch_theme');
-            if(savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
+            if(savedTheme === 'dark') document.body.classList.add('dark-mode');
         });
 
         const observer = new IntersectionObserver((entries) => {
@@ -372,12 +435,19 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // [NEW] 토스트 메시지 함수
         function showToast(message) {
             const toast = document.getElementById("toast");
             toast.innerText = message;
             toast.className = "toast show";
             setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        // [NEW] 브랜드 스토리 모달 열기/닫기
+        function openBrandStory() {
+            document.getElementById('brandModal').style.display = 'flex';
+        }
+        function closeBrandStory() {
+            document.getElementById('brandModal').style.display = 'none';
         }
 
         function showDetail(id) {
@@ -410,7 +480,7 @@
                 const btn = document.querySelector('.fab-cart');
                 btn.style.transform = "scale(1.3)";
                 setTimeout(() => btn.style.transform = "scale(1)", 200);
-                showToast("장바구니에 담겼습니다!"); // 토스트 메시지 호출
+                showToast("장바구니에 담겼습니다!");
             }
         }
         function updateCartUI() { document.getElementById('cartCount').innerText = cart.length; }
@@ -446,17 +516,15 @@
         function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         
-        // [수정] 테마 변경 시 로컬스토리지 저장
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('momstouch_theme', isDark ? 'dark' : 'light');
         }
         
-        // [수정] 언어 변경 시 로컬스토리지 저장
         function changeLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('momstouch_lang', lang); // 저장
+            localStorage.setItem('momstouch_lang', lang);
             
             const t = translations[lang];
             if(!t) return;
