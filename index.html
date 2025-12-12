@@ -117,53 +117,15 @@
         opacity: 0;
         transition: opacity 0.5s, bottom 0.5s;
     }
-    .toast.show {
-        visibility: visible;
-        opacity: 1;
-        bottom: 50px;
-    }
+    .toast.show { visibility: visible; opacity: 1; bottom: 50px; }
 
-    /* [NEW] 브랜드 스토리 모달 스타일 (전체화면 느낌) */
-    .brand-modal-content {
-        max-width: 800px;
-        width: 90%;
-        height: 80vh;
-        overflow-y: auto;
-        padding: 0;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-    }
-    .brand-header {
-        position: relative;
-        height: 300px;
-        background: url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1665&auto=format&fit=crop') center/cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-    }
-    .brand-header h2 {
-        font-size: 3rem;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-        z-index: 2;
-    }
-    .brand-header::after {
-        content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
-        background: rgba(0,0,0,0.4);
-    }
-    .brand-text {
-        padding: 40px;
-        line-height: 1.8;
-        font-size: 1.1rem;
-        color: var(--text-main);
-    }
+    .brand-modal-content { max-width: 800px; width: 90%; height: 80vh; overflow-y: auto; padding: 0; text-align: left; display: flex; flex-direction: column; }
+    .brand-header { position: relative; height: 300px; background: url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1665&auto=format&fit=crop') center/cover; display: flex; align-items: center; justify-content: center; color: white; }
+    .brand-header h2 { font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); z-index: 2; }
+    .brand-header::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); }
+    .brand-text { padding: 40px; line-height: 1.8; font-size: 1.1rem; color: var(--text-main); }
     .brand-text h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 20px; font-weight: 900;}
-    .close-brand {
-        position: absolute; top: 20px; right: 20px; z-index: 10;
-        background: rgba(0,0,0,0.5); color: white; border-radius: 50%; width: 40px; height: 40px;
-        font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer;
-    }
+    .close-brand { position: absolute; top: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: white; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; }
 
     @media(max-width: 768px) {
         .nav-menu { display: none; }
@@ -348,7 +310,6 @@
                 <h4>Follow Us</h4>
                 <div class="sns-icons">
                     <a href="https://www.instagram.com/momstouch.love" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/user/momstouchfnc" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -442,7 +403,6 @@
             setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
         }
 
-        // [NEW] 브랜드 스토리 모달 열기/닫기
         function openBrandStory() {
             document.getElementById('brandModal').style.display = 'flex';
         }
