@@ -111,10 +111,10 @@
         <div class="header-inner">
             <div class="logo">MOM'S <span>TOUCH</span></div>
             <ul class="nav-menu">
-                <li onclick="alert('브랜드 스토리 준비 중입니다.')">브랜드 스토리</li>
-                <li onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})">메뉴소개</li>
-                <li onclick="alert('가까운 매장을 검색합니다.')">매장찾기</li>
-                <li onclick="alert('고객센터 연결')">고객센터</li>
+                <li onclick="alert('브랜드 스토리 준비 중입니다.')" data-i18n="nav_story">브랜드 스토리</li>
+                <li onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})" data-i18n="nav_menu">메뉴소개</li>
+                <li onclick="alert('가까운 매장을 검색합니다.')" data-i18n="nav_store">매장찾기</li>
+                <li onclick="alert('고객센터 연결')" data-i18n="nav_cs">고객센터</li>
             </ul>
             <div class="utils">
                 <button class="btn-icon" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
@@ -134,14 +134,14 @@
             <button class="close-sidebar" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
         </div>
         <ul class="sidebar-menu">
-            <li onclick="alert('준비 중입니다.')">브랜드 스토리</li>
-            <li onclick="toggleSidebar(); document.querySelector('.container').scrollIntoView({behavior:'smooth'})">메뉴소개</li>
-            <li onclick="alert('매장 찾기 기능은 준비 중입니다.')">매장찾기</li>
-            <li onclick="alert('이벤트 페이지 준비 중')">이벤트</li>
-            <li onclick="alert('고객센터')">고객센터</li>
+            <li onclick="alert('준비 중입니다.')" data-i18n="nav_story">브랜드 스토리</li>
+            <li onclick="toggleSidebar(); document.querySelector('.container').scrollIntoView({behavior:'smooth'})" data-i18n="nav_menu">메뉴소개</li>
+            <li onclick="alert('매장 찾기 기능은 준비 중입니다.')" data-i18n="nav_store">매장찾기</li>
+            <li onclick="alert('이벤트 페이지 준비 중')" data-i18n="nav_event">이벤트</li>
+            <li onclick="alert('고객센터')" data-i18n="nav_cs">고객센터</li>
         </ul>
         <div class="sidebar-utils">
-            <span style="font-weight:bold; font-size:0.9rem;">설정</span>
+            <span style="font-weight:bold; font-size:0.9rem;" data-i18n="settings">설정</span>
             <div style="display:flex; gap:10px;">
                 <button class="btn-icon" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
                 <select class="lang-select" onchange="changeLanguage(this.value)">
@@ -207,26 +207,26 @@
             <p id="modalDesc" style="color:var(--text-sub); margin-bottom:10px;">설명</p>
             <h3 class="price" id="modalPrice">₩0</h3>
             <table class="nutrition-table">
-                <tr><th>중량(g)</th><th>칼로리(kcal)</th><th>단백질(g)</th><th>나트륨(mg)</th></tr>
+                <tr><th data-i18n="nut_w">중량(g)</th><th data-i18n="nut_k">칼로리(kcal)</th><th data-i18n="nut_p">단백질(g)</th><th data-i18n="nut_n">나트륨(mg)</th></tr>
                 <tr><td id="nutWeight">-</td><td id="nutKcal">-</td><td id="nutProtein">-</td><td id="nutNa">-</td></tr>
             </table>
             <div class="modal-btns">
-                <button class="btn-modal btn-close" onclick="closeDetail()">취소</button>
-                <button class="btn-modal btn-add" onclick="addToCartFromModal()">장바구니 담기</button>
+                <button class="btn-modal btn-close" onclick="closeDetail()" data-i18n="btn_cancel">취소</button>
+                <button class="btn-modal btn-add" onclick="addToCartFromModal()" data-i18n="btn_add">장바구니 담기</button>
             </div>
         </div>
     </div>
 
     <div id="cartModal" class="modal">
         <div class="modal-content">
-            <h2><i class="fas fa-shopping-cart"></i> 장바구니</h2>
+            <h2><i class="fas fa-shopping-cart"></i> <span data-i18n="cart_title">장바구니</span></h2>
             <ul class="cart-list" id="cartList">
-                <li style="padding:20px; text-align:center;">장바구니가 비었습니다.</li>
+                <li style="padding:20px; text-align:center;" data-i18n="cart_empty">장바구니가 비었습니다.</li>
             </ul>
             <div class="cart-total" id="cartTotal">Total: ₩0</div>
             <div class="modal-btns">
-                <button class="btn-modal btn-close" onclick="closeCart()">더 담기</button>
-                <button class="btn-modal btn-add" onclick="alert('주문이 완료되었습니다!')">결제하기</button>
+                <button class="btn-modal btn-close" onclick="closeCart()" data-i18n="btn_more">더 담기</button>
+                <button class="btn-modal btn-add" onclick="alert('주문이 완료되었습니다!')" data-i18n="btn_pay">결제하기</button>
             </div>
         </div>
     </div>
@@ -234,21 +234,21 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-col">
-                <h4>회사 소개</h4>
+                <h4 data-i18n="footer_company">회사 소개</h4>
                 <ul>
-                    <li>브랜드 스토리</li>
-                    <li>가맹점 문의</li>
-                    <li>채용 정보</li>
-                    <li>찾아오시는 길</li>
+                    <li data-i18n="nav_story">브랜드 스토리</li>
+                    <li data-i18n="footer_franchise">가맹점 문의</li>
+                    <li data-i18n="footer_recruit">채용 정보</li>
+                    <li data-i18n="footer_map">찾아오시는 길</li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>고객 지원</h4>
+                <h4 data-i18n="footer_support">고객 지원</h4>
                 <ul>
-                    <li>이용약관</li>
-                    <li>개인정보처리방침</li>
-                    <li>고객센터</li>
-                    <li>자주 묻는 질문</li>
+                    <li data-i18n="footer_terms">이용약관</li>
+                    <li data-i18n="footer_privacy">개인정보처리방침</li>
+                    <li data-i18n="nav_cs">고객센터</li>
+                    <li data-i18n="footer_faq">자주 묻는 질문</li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -261,20 +261,69 @@
             </div>
         </div>
         <div class="footer-info">
-            <p>서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니</p>
-            <p>대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234</p>
+            <p data-i18n="footer_addr">서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니</p>
+            <p data-i18n="footer_ceo">대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234</p>
             <p style="margin-top:10px;">&copy; 2025 MOM'S TOUCH Clone Project. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        const products = {
-            1: { name: "싸이버거", price: 4600, img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop", desc: "매콤바삭한 통다리살 패티가 통째로 들어간 시그니처 버거", nutrition: {w: 230, kcal: 594, p: 28, na: 1025} },
-            2: { name: "케이준 양념감자", price: 2000, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1450&auto=format&fit=crop", desc: "맘스터치만의 비법 양념으로 튀겨낸 바삭한 감자튀김", nutrition: {w: 100, kcal: 313, p: 4, na: 620} },
-            3: { name: "후라이드 치킨", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", desc: "겉은 바삭하고 속은 촉촉한 클래식 치킨의 정석", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} }
+        // 현재 선택된 언어 (기본값: ko)
+        let currentLang = 'ko';
+
+        // 번역 데이터 (모든 텍스트 포함)
+        const translations = {
+            ko: { 
+                heroTitle: "압도적인 크기, 싸이버거", heroSub: "주문 즉시 조리하는 신선한 수제 버거의 기준", orderBtn: "주문하기",
+                menuTitle: "맘스터치 대표 메뉴", menuSub: "가성비 그 이상의 감동을 만나보세요",
+                menu1_name: "싸이버거", menu1_desc: "매콤바삭한 통다리살 패티가 통째로!",
+                menu3_name: "케이준 양념감자", menu3_desc: "한 번 맛보면 멈출 수 없는 감자튀김.",
+                menu4_name: "후라이드 치킨", menu4_desc: "겉바속촉의 정석, 맘스터치 치킨.",
+                nav_story: "브랜드 스토리", nav_menu: "메뉴소개", nav_store: "매장찾기", nav_cs: "고객센터", nav_event: "이벤트", settings: "설정",
+                nut_w: "중량(g)", nut_k: "칼로리(kcal)", nut_p: "단백질(g)", nut_n: "나트륨(mg)",
+                btn_cancel: "취소", btn_add: "장바구니 담기", cart_title: "장바구니", cart_empty: "장바구니가 비었습니다.", btn_more: "더 담기", btn_pay: "결제하기",
+                footer_company: "회사 소개", footer_franchise: "가맹점 문의", footer_recruit: "채용 정보", footer_map: "찾아오시는 길",
+                footer_support: "고객 지원", footer_terms: "이용약관", footer_privacy: "개인정보처리방침", footer_faq: "자주 묻는 질문",
+                footer_addr: "서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니", footer_ceo: "대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234"
+            },
+            en: { 
+                heroTitle: "Overwhelming Size, Thigh Burger", heroSub: "Standard of fresh handmade burgers cooked to order.", orderBtn: "Order Now",
+                menuTitle: "Signature Menu", menuSub: "Experience value beyond price.",
+                menu1_name: "Thigh Burger", menu1_desc: "Spicy & crispy whole chicken thigh patty!",
+                menu3_name: "Cajun Fries", menu3_desc: "Crispy fries with special seasoning you can't stop.",
+                menu4_name: "Fried Chicken", menu4_desc: "Classic crispy chicken. The standard of taste.",
+                nav_story: "Brand Story", nav_menu: "Menu", nav_store: "Find Store", nav_cs: "Support", nav_event: "Events", settings: "Settings",
+                nut_w: "Weight(g)", nut_k: "Calories", nut_p: "Protein(g)", nut_n: "Sodium(mg)",
+                btn_cancel: "Cancel", btn_add: "Add to Cart", cart_title: "My Cart", cart_empty: "Your cart is empty.", btn_more: "Add More", btn_pay: "Checkout",
+                footer_company: "About Us", footer_franchise: "Franchise", footer_recruit: "Careers", footer_map: "Location",
+                footer_support: "Support", footer_terms: "Terms of Use", footer_privacy: "Privacy Policy", footer_faq: "FAQ",
+                footer_addr: "5F, 1234 Cheonho-daero, Gangdong-gu, Seoul, Korea", footer_ceo: "CEO: Kim Moms | Reg. No: 123-45-67890 | CS: 1588-1234"
+            },
+            jp: { 
+                heroTitle: "圧倒的な大きさ、サイバーガー", heroSub: "注文後すぐに調理する新鮮な手作りバーガーの基準。", orderBtn: "注文する",
+                menuTitle: "代表メニュー", menuSub: "コスパ以上の感動に出会ってください。",
+                menu1_name: "サイバーガー", menu1_desc: "辛くてサクサクの鶏もも肉パティが丸ごと！",
+                menu3_name: "ケイジャンポテト", menu3_desc: "一度食べたら止まらないマムズタッチだけの味付けポテト。",
+                menu4_name: "フライドチキン", menu4_desc: "外はサクサク、中はジューシー。クラシックなチキン。",
+                nav_story: "ブランドストーリー", nav_menu: "メニュー", nav_store: "店舗検索", nav_cs: "お客様センター", nav_event: "イベント", settings: "設定",
+                nut_w: "重量(g)", nut_k: "カロリー", nut_p: "タンパク質(g)", nut_n: "ナトリウム(mg)",
+                btn_cancel: "キャンセル", btn_add: "カートに追加", cart_title: "カート", cart_empty: "カートは空です。", btn_more: "買い物を続ける", btn_pay: "お会計",
+                footer_company: "会社概要", footer_franchise: "加盟店募集", footer_recruit: "採用情報", footer_map: "アクセス",
+                footer_support: "カスタマーサポート", footer_terms: "利用規約", footer_privacy: "個人情報処理方針", footer_faq: "よくある質問",
+                footer_addr: "ソウル特別市 江東区 千戸大路 1234, 5階 (株)マムズタッチ＆カンパニー", footer_ceo: "代表取締役: キム・マムス | 事業者番号: 123-45-67890"
+            }
         };
-        let cart = [];
+
+        // 상품 데이터 (번역 키 포함)
+        const products = {
+            1: { nameKey: "menu1_name", descKey: "menu1_desc", price: 4600, img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop", nutrition: {w: 230, kcal: 594, p: 28, na: 1025} },
+            2: { nameKey: "menu3_name", descKey: "menu3_desc", price: 2000, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1450&auto=format&fit=crop", nutrition: {w: 100, kcal: 313, p: 4, na: 620} },
+            3: { nameKey: "menu4_name", descKey: "menu4_desc", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} }
+        };
+
+        let cart = []; // 장바구니에는 product ID만 저장
         let currentProductId = null;
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -283,23 +332,36 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // [수정] 언어에 맞는 텍스트를 가져와 모달 표시
         function showDetail(id) {
             currentProductId = id;
             const p = products[id];
-            document.getElementById('modalTitle').innerText = p.name;
-            document.getElementById('modalDesc').innerText = p.desc;
+            
+            // 현재 언어설정에 맞는 텍스트 로드
+            const t = translations[currentLang];
+            
+            document.getElementById('modalTitle').innerText = t[p.nameKey];
+            document.getElementById('modalDesc').innerText = t[p.descKey];
             document.getElementById('modalPrice').innerText = `₩${p.price.toLocaleString()}`;
             document.getElementById('modalImg').src = p.img;
             document.getElementById('nutWeight').innerText = p.nutrition.w;
             document.getElementById('nutKcal').innerText = p.nutrition.kcal;
             document.getElementById('nutProtein').innerText = p.nutrition.p;
             document.getElementById('nutNa').innerText = p.nutrition.na;
+            
+            // 모달 내 버튼 텍스트도 갱신 (이미 changeLanguage에서 처리되지만 안전장치)
+            document.querySelector('[data-i18n="btn_cancel"]').innerText = t.btn_cancel;
+            document.querySelector('[data-i18n="btn_add"]').innerText = t.btn_add;
+
             document.getElementById('detailModal').style.display = 'flex';
         }
+
         function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
+        
         function addToCartFromModal() {
             if (currentProductId) {
-                cart.push(products[currentProductId]);
+                cart.push(currentProductId); // ID만 저장
                 updateCartUI();
                 closeDetail();
                 const btn = document.querySelector('.fab-cart');
@@ -308,19 +370,27 @@
             }
         }
         function updateCartUI() { document.getElementById('cartCount').innerText = cart.length; }
+        
+        // [수정] 장바구니 열 때 현재 언어로 이름 표시
         function openCart() {
             const list = document.getElementById('cartList');
             const totalEl = document.getElementById('cartTotal');
             list.innerHTML = "";
             let total = 0;
+            const t = translations[currentLang];
+
             if (cart.length === 0) {
-                list.innerHTML = "<li style='padding:20px; text-align:center;'>아직 담은 메뉴가 없습니다.</li>";
+                list.innerHTML = `<li style='padding:20px; text-align:center;'>${t.cart_empty}</li>`;
             } else {
-                cart.forEach((item, index) => {
+                cart.forEach((id, index) => {
+                    const item = products[id];
                     total += item.price;
+                    // 현재 언어로 된 상품명 가져오기
+                    const itemName = t[item.nameKey];
+                    
                     list.innerHTML += `
                         <li class="cart-item">
-                            <span>${item.name}</span>
+                            <span>${itemName}</span>
                             <span style="font-weight:bold;">₩${item.price.toLocaleString()}</span>
                             <button onclick="removeFromCart(${index})" style="color:red; background:none; margin-left:10px;"><i class="fas fa-trash"></i></button>
                         </li>
@@ -334,18 +404,25 @@
         function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         function toggleTheme() { document.body.classList.toggle('dark-mode'); }
-        const translations = {
-            ko: { heroTitle: "압도적인 크기, 싸이버거", orderBtn: "주문하기" },
-            en: { heroTitle: "Overwhelming Size, Thigh Burger", orderBtn: "Order Now" },
-            jp: { heroTitle: "圧倒的な大きさ、サイバーガー", orderBtn: "注文する" }
-        };
+        
+        // [핵심] 언어 변경 로직 (사이트 전체)
         function changeLanguage(lang) {
+            currentLang = lang; // 현재 언어 상태 업데이트
             const t = translations[lang];
             if(!t) return;
-            if(t.heroTitle) document.querySelector('[data-i18n="heroTitle"]').innerText = t.heroTitle;
-            if(t.orderBtn) document.querySelector('[data-i18n="orderBtn"]').innerText = t.orderBtn;
+
+            // 1. data-i18n 속성이 있는 모든 요소 텍스트 변경
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.innerText = t[key];
+                }
+            });
+
+            // 2. 셀렉트 박스 동기화
             document.querySelectorAll('.lang-select').forEach(el => el.value = lang);
         }
+        
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) { event.target.style.display = "none"; }
         }
