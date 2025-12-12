@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="맘스터치 - 빠르게보다 올바르게">
+    <meta property="og:description" content="주문 즉시 조리하는 신선한 수제버거, 맘스터치">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop">
+    
     <title>맘스터치 - 빠르게보다 올바르게</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -19,6 +24,8 @@
             --text-sub: #666666;
             --border: #eeeeee;
             --shadow: rgba(0,0,0,0.1);
+            --footer-bg: #222222;
+            --footer-text: #999999;
         }
 
         body.dark-mode {
@@ -29,6 +36,7 @@
             --border: #444444;
             --shadow: rgba(0,0,0,0.5);
             --secondary: #FFC300; 
+            --footer-bg: #111111;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif; transition: background-color 0.3s, color 0.3s; }
@@ -38,15 +46,8 @@
         button { border: none; cursor: pointer; }
 
         /* [애니메이션] 스크롤 시 등장 효과 */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* 1. 헤더 */
         header {
@@ -65,8 +66,7 @@
         .logo { font-size: 1.8rem; font-weight: 900; color: var(--secondary); letter-spacing: -1px; }
         .logo span { color: var(--accent); }
 
-        /* 데스크탑 메뉴 */
-        .nav-menu { display: flex; gap: 20px; font-weight: 700; }
+        .nav-menu { display: flex; gap: 20px; font-weight: 700; cursor: pointer;}
         .nav-menu li:hover { color: var(--primary); }
 
         .utils { display: flex; align-items: center; gap: 10px; }
@@ -79,11 +79,9 @@
             padding: 6px; border-radius: 5px; background: var(--bg-color);
             color: var(--text-main); border: 1px solid var(--text-sub);
         }
-
-        /* 햄버거 버튼 (모바일용) */
         .hamburger { display: none; font-size: 1.5rem; color: var(--text-main); background: none; }
 
-        /* 2. 사이드바 (모바일 메뉴) */
+        /* 2. 사이드바 (모바일) */
         .sidebar {
             position: fixed; top: 0; right: -250px; width: 250px; height: 100%;
             background-color: var(--card-bg); box-shadow: -2px 0 5px var(--shadow);
@@ -92,12 +90,13 @@
         .sidebar.open { right: 0; }
         .sidebar-header { display: flex; justify-content: flex-end; }
         .close-sidebar { font-size: 1.5rem; background: none; color: var(--text-main); }
-        .sidebar-menu li { padding: 15px 0; border-bottom: 1px solid var(--border); font-weight: bold; }
+        .sidebar-menu li { padding: 15px 0; border-bottom: 1px solid var(--border); font-weight: bold; cursor: pointer; }
 
-        /* 3. 히어로 섹션 */
+        /* 3. 히어로 섹션 (가독성 개선: Overlay 진하게) */
         .hero {
             margin-top: 70px; height: 500px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1599&auto=format&fit=crop');
+            /* 배경 어둡게 하기: rgba 0.5 -> 0.7로 변경 */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1599&auto=format&fit=crop');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
         }
@@ -135,7 +134,7 @@
         .card-body p { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 15px; height: 40px; }
         .price { font-size: 1.3rem; font-weight: 900; color: var(--text-main); }
 
-        /* 5. 플로팅 장바구니 버튼 */
+        /* 5. 플로팅 장바구니 */
         .fab-cart {
             position: fixed; bottom: 30px; right: 30px;
             background-color: var(--accent); color: white;
@@ -154,7 +153,7 @@
             border: 2px solid white;
         }
 
-        /* 6. 모달 공통 스타일 */
+        /* 6. 모달 스타일 */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0;
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
@@ -168,15 +167,11 @@
         }
         @keyframes slideUp { from {transform: translateY(50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
 
-        /* 상세 정보 모달 스타일 */
         .detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
         .nutrition-table {
-            width: 100%; margin: 20px 0; border-collapse: collapse;
-            font-size: 0.9rem; color: var(--text-main);
+            width: 100%; margin: 20px 0; border-collapse: collapse; font-size: 0.9rem; color: var(--text-main);
         }
-        .nutrition-table th, .nutrition-table td {
-            border: 1px solid var(--border); padding: 8px;
-        }
+        .nutrition-table th, .nutrition-table td { border: 1px solid var(--border); padding: 8px; }
         .nutrition-table th { background-color: var(--primary); color: #000; }
         
         .modal-btns { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
@@ -184,12 +179,27 @@
         .btn-close { background-color: var(--border); color: var(--text-main); }
         .btn-add { background-color: var(--accent); color: white; }
 
-        /* 장바구니 모달 스타일 */
         .cart-list { list-style: none; text-align: left; max-height: 300px; overflow-y: auto; margin: 20px 0; border-top: 1px solid var(--border); }
         .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
         .cart-total { font-size: 1.5rem; font-weight: 900; color: var(--accent); margin-top: 20px; text-align: right; }
 
-        /* 반응형 */
+        /* 7. [NEW] 프로페셔널 푸터 스타일 */
+        footer {
+            background-color: var(--footer-bg); color: var(--footer-text);
+            padding: 60px 0; font-size: 0.9rem;
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
+        }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-col ul li { margin-bottom: 10px; cursor: pointer; transition: color 0.3s; }
+        .footer-col ul li:hover { color: var(--primary); }
+        .footer-info { margin-top: 40px; border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 0.8rem; }
+        .sns-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .sns-icons a { font-size: 1.5rem; color: var(--footer-text); transition: color 0.3s; }
+        .sns-icons a:hover { color: var(--primary); }
+
         @media(max-width: 768px) {
             .nav-menu { display: none; }
             .hamburger { display: block; }
@@ -205,10 +215,10 @@
             <div class="logo">MOM'S <span>TOUCH</span></div>
             
             <ul class="nav-menu">
-                <li><a href="#">브랜드 스토리</a></li>
-                <li><a href="#">메뉴소개</a></li>
-                <li><a href="#">매장찾기</a></li>
-                <li><a href="#">고객센터</a></li>
+                <li onclick="alert('브랜드 스토리 준비 중입니다.')">브랜드 스토리</li>
+                <li onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})">메뉴소개</li>
+                <li onclick="alert('가까운 매장을 검색합니다.')">매장찾기</li>
+                <li onclick="alert('고객센터 연결')">고객센터</li>
             </ul>
 
             <div class="utils">
@@ -228,11 +238,11 @@
             <button class="close-sidebar" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#">브랜드 스토리</a></li>
-            <li><a href="#">메뉴소개</a></li>
-            <li><a href="#">매장찾기</a></li>
-            <li><a href="#">이벤트</a></li>
-            <li><a href="#">고객센터</a></li>
+            <li onclick="alert('준비 중입니다.')">브랜드 스토리</li>
+            <li onclick="toggleSidebar(); document.querySelector('.container').scrollIntoView({behavior:'smooth'})">메뉴소개</li>
+            <li onclick="alert('매장 찾기 기능은 준비 중입니다.')">매장찾기</li>
+            <li onclick="alert('이벤트 페이지 준비 중')">이벤트</li>
+            <li onclick="alert('고객센터')">고객센터</li>
         </ul>
     </div>
 
@@ -320,21 +330,51 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 MOM'S TOUCH Clone Project. <br>Designed for Practice.</p>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>회사 소개</h4>
+                <ul>
+                    <li>브랜드 스토리</li>
+                    <li>가맹점 문의</li>
+                    <li>채용 정보</li>
+                    <li>찾아오시는 길</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>고객 지원</h4>
+                <ul>
+                    <li>이용약관</li>
+                    <li>개인정보처리방침</li>
+                    <li>고객센터</li>
+                    <li>자주 묻는 질문</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="sns-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-info">
+            <p>서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니</p>
+            <p>대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234</p>
+            <p style="margin-top:10px;">&copy; 2025 MOM'S TOUCH Clone Project. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // --- 1. 데이터베이스 (상품 정보) ---
         const products = {
             1: { name: "싸이버거", price: 4600, img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop", desc: "매콤바삭한 통다리살 패티가 통째로 들어간 시그니처 버거", nutrition: {w: 230, kcal: 594, p: 28, na: 1025} },
             2: { name: "케이준 양념감자", price: 2000, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1450&auto=format&fit=crop", desc: "맘스터치만의 비법 양념으로 튀겨낸 바삭한 감자튀김", nutrition: {w: 100, kcal: 313, p: 4, na: 620} },
             3: { name: "후라이드 치킨", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", desc: "겉은 바삭하고 속은 촉촉한 클래식 치킨의 정석", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} }
         };
 
-        let cart = []; // 장바구니 배열
-        let currentProductId = null; // 현재 보고 있는 상품 ID
+        let cart = [];
+        let currentProductId = null;
 
-        // --- 2. 스크롤 애니메이션 (Intersection Observer) ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -345,7 +385,6 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // --- 3. 상세 보기 모달 기능 ---
         function showDetail(id) {
             currentProductId = id;
             const p = products[id];
@@ -355,7 +394,6 @@
             document.getElementById('modalPrice').innerText = `₩${p.price.toLocaleString()}`;
             document.getElementById('modalImg').src = p.img;
             
-            // 영양정보 바인딩
             document.getElementById('nutWeight').innerText = p.nutrition.w;
             document.getElementById('nutKcal').innerText = p.nutrition.kcal;
             document.getElementById('nutProtein').innerText = p.nutrition.p;
@@ -368,14 +406,11 @@
             document.getElementById('detailModal').style.display = 'none';
         }
 
-        // --- 4. 장바구니 기능 ---
         function addToCartFromModal() {
             if (currentProductId) {
                 cart.push(products[currentProductId]);
                 updateCartUI();
                 closeDetail();
-                
-                // 버튼에 애니메이션 효과
                 const btn = document.querySelector('.fab-cart');
                 btn.style.transform = "scale(1.3)";
                 setTimeout(() => btn.style.transform = "scale(1)", 200);
@@ -413,14 +448,13 @@
         function removeFromCart(index) {
             cart.splice(index, 1);
             updateCartUI();
-            openCart(); // UI 갱신을 위해 다시 호출
+            openCart();
         }
 
         function closeCart() {
             document.getElementById('cartModal').style.display = 'none';
         }
 
-        // --- 5. 모바일 사이드바 & 테마 ---
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
         }
@@ -429,7 +463,6 @@
             document.body.classList.toggle('dark-mode');
         }
 
-        // --- 6. 다국어 (간단 구현) ---
         const translations = {
             ko: { heroTitle: "압도적인 크기, 싸이버거", orderBtn: "주문하기" },
             en: { heroTitle: "Overwhelming Size, Thigh Burger", orderBtn: "Order Now" },
@@ -441,10 +474,8 @@
             if(!t) return;
             if(t.heroTitle) document.querySelector('[data-i18n="heroTitle"]').innerText = t.heroTitle;
             if(t.orderBtn) document.querySelector('[data-i18n="orderBtn"]').innerText = t.orderBtn;
-            // (다른 텍스트도 필요 시 추가 가능)
         }
 
-        // 모달 밖 클릭 시 닫기
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
