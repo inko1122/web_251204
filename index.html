@@ -127,6 +127,19 @@
     .brand-text h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 20px; font-weight: 900;}
     .close-brand { position: absolute; top: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: white; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; }
 
+    .hamburger-snow {
+        position: fixed;
+        top: -50px;
+        font-size: 2rem;
+        animation: fall linear;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(105vh);
+        }
+    }
+
     @media(max-width: 768px) {
         .nav-menu { display: none; }
         .hamburger { display: block; }
@@ -247,6 +260,9 @@
                     <div class="price">₩16,900</div>
                 </div>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <button id="hamburger-bomb-btn" class="btn-cta" style="background-color: var(--accent); color: white;">🍔 햄버거 폭탄</button>
         </div>
     </section>
 
@@ -424,15 +440,15 @@
         `;
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 기존 코드 유지 (언어, 테마 설정)
             const savedLang = localStorage.getItem('momstouch_lang');
             if(savedLang) changeLanguage(savedLang);
 
             const savedTheme = localStorage.getItem('momstouch_theme');
             if(savedTheme === 'dark') document.body.classList.add('dark-mode');
             
-            // 세트 업그레이드 모달 DOM에 추가
             document.body.insertAdjacentHTML('beforeend', setUpgradeModal);
+
+            document.getElementById('hamburger-bomb-btn').addEventListener('click', startHamburgerRain);
         });
 
         const observer = new IntersectionObserver((entries) => {
@@ -458,16 +474,14 @@
             document.getElementById('brandModal').style.display = 'none';
         }
 
-        // **변경: 메뉴 상세 보기 함수**
         function showDetail(id) {
             currentProductId = id;
             
-            if (id === 1) { // 싸이버거(ID: 1)를 클릭했을 경우
+            if (id === 1) {
                 showSetUpgradePrompt(id);
                 return;
             }
 
-            // 그 외 메뉴는 기존 로직 유지
             const p = products[id];
             const t = translations[currentLang];
             
@@ -488,22 +502,19 @@
 
         function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
         
-        // **수정: 장바구니에 추가 함수 (싸이버거 제외)**
         function addToCartFromModal() {
-            if (currentProductId && currentProductId !== 1) { // 싸이버거(ID: 1)가 아닌 경우에만 실행
+            if (currentProductId && currentProductId !== 1) {
                 cart.push(currentProductId); 
                 updateCartUI();
                 closeDetail();
             }
         }
 
-        // **신규: 세트 업그레이드 프롬프트 표시**
         function showSetUpgradePrompt(baseId) {
-            currentProductId = baseId; // 1 (싸이버거 단품 ID) 저장
+            currentProductId = baseId;
             const modal = document.getElementById('setUpgradeModal');
             const t = translations[currentLang];
 
-            // 텍스트 업데이트 (다국어 지원)
             modal.querySelector('[data-i18n="set_upgrade_title"]').innerText = t.set_upgrade_title;
             modal.querySelector('[data-i18n="set_upgrade_msg"]').innerText = t.set_upgrade_msg;
             modal.querySelector('[data-i18n="set_upgrade_info"]').innerHTML = t.set_upgrade_info.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -513,7 +524,6 @@
             modal.style.display = 'flex';
         }
 
-        // **신규: 세트 업그레이드 결정**
         function confirmSetUpgrade(isSet) {
             document.getElementById('setUpgradeModal').style.display = 'none';
             
@@ -521,20 +531,18 @@
             let itemId = currentProductId;
 
             if (isSet) {
-                itemId = 101; // 세트 메뉴 ID
+                itemId = 101;
             } 
             
             cart.push(itemId);
             updateCartUI();
         }
 
-        // **수정: 장바구니 UI 업데이트**
         function updateCartUI() { 
             document.getElementById('cartCount').innerText = cart.length; 
             if (cart.length > 0) showToast(translations[currentLang].toast_add);
         }
         
-        // **수정: 장바구니 열기**
         function openCart() {
             const list = document.getElementById('cartList');
             const totalEl = document.getElementById('cartTotal');
@@ -548,7 +556,6 @@
                 cart.forEach((id, index) => {
                     const item = products[id];
                     total += item.price;
-                    // 세트일 경우 이름 다르게 표시
                     const itemName = (id === 101) ? t.menu1_set : t[item.nameKey]; 
                     
                     list.innerHTML += `
@@ -562,7 +569,6 @@
             }
             totalEl.innerText = `Total: ₩${total.toLocaleString()}`;
             
-            // 결제하기 버튼 텍스트 업데이트
             document.querySelector('#cartModal [data-i18n="btn_pay"]').innerText = t.btn_pay;
             document.querySelector('#cartModal [data-i18n="btn_more"]').innerText = t.btn_more;
             document.querySelector('#cartModal [data-i18n="cart_title"]').innerText = t.cart_title;
@@ -570,7 +576,7 @@
             document.getElementById('cartModal').style.display = 'flex';
         }
 
-        function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); openCart(); } // 장바구니에서 항목 제거
+        function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); openCart(); }
         function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         
@@ -590,11 +596,9 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) {
-                    // brand_desc는 줄바꿈을 위해 innerHTML 사용
                     if (key === 'brand_desc') {
                         el.innerHTML = t[key].replace(/\n/g, '<br>');
                     } else if (key === 'set_upgrade_info') {
-                        // 볼드체 처리를 위해 innerHTML 사용
                         el.innerHTML = t[key].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                     } else {
                         el.innerText = t[key];
@@ -604,12 +608,31 @@
 
             document.querySelectorAll('.lang-select').forEach(el => el.value = lang);
         }
+
+        function startHamburgerRain() {
+            const container = document.body;
+            const hamburgerCount = 30;
+            const duration = 2000;
+
+            for (let i = 0; i < hamburgerCount; i++) {
+                const hamburger = document.createElement('div');
+                hamburger.innerHTML = '🍔';
+                hamburger.classList.add('hamburger-snow');
+                hamburger.style.left = `${Math.random() * 100}vw`;
+                hamburger.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                hamburger.style.animationDelay = `${Math.random() * 2}s`;
+                container.appendChild(hamburger);
+            }
+
+            setTimeout(() => {
+                document.querySelectorAll('.hamburger-snow').forEach(el => el.remove());
+            }, duration + 2000); // animation-delay + animation-duration
+        }
         
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) { event.target.style.display = "none"; }
         }
         
-        // 주문 완료 시 토스트 메시지 출력
         document.querySelector('#cartModal .btn-add').onclick = () => {
             if(cart.length > 0) {
                 showToast(translations[currentLang].toast_order_complete);
