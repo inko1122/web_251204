@@ -336,7 +336,16 @@
                 footer_support: "고객 지원", footer_terms: "이용약관", footer_privacy: "개인정보처리방침", footer_faq: "자주 묻는 질문",
                 footer_addr: "서울시 강동구 천호대로 1234, 5층 (주)맘스터치앤컴퍼니", footer_ceo: "대표이사: 김맘스 | 사업자등록번호: 123-45-67890 | 고객센터: 1588-1234",
                 brand_title: "빠르게보다 올바르게",
-                brand_desc: "맘스터치는 단순한 패스트푸드가 아닙니다.\n우리는 주문 후 조리하는 방식을 고집합니다.\n\n신선한 재료와 정성스러운 손길로\n엄마의 마음을 담아 따뜻한 한 끼를 제공합니다.\n\n가성비를 넘어 가심비까지,\n대한민국 대표 버거 브랜드 맘스터치입니다."
+                brand_desc: "맘스터치는 단순한 패스트푸드가 아닙니다.\n우리는 주문 후 조리하는 방식을 고집합니다.\n\n신선한 재료와 정성스러운 손길로\n엄마의 마음을 담아 따뜻한 한 끼를 제공합니다.\n\n가성비를 넘어 가심비까지,\n대한민국 대표 버거 브랜드 맘스터치입니다.",
+                // 세트 업그레이드 관련 추가
+                set_upgrade_title: "세트 메뉴 업그레이드",
+                set_upgrade_msg: "지금 싸이버거를 세트로 업그레이드 하시겠어요?",
+                set_upgrade_info: "싸이버거 세트 (₩6,900)는 싸이버거 단품에 **케이준 양념감자**와 **콜라**가 추가됩니다.",
+                set_upgrade_yes: "네, 세트로 바꿀게요",
+                set_upgrade_no: "아니요, 단품으로 담을게요",
+                menu1_set: "싸이버거 세트",
+                toast_add: "장바구니에 담겼습니다!",
+                toast_order_complete: "주문이 완료되었습니다!"
             },
             en: { 
                 heroTitle: "Overwhelming Size, Thigh Burger", heroSub: "Standard of fresh handmade burgers cooked to order.", orderBtn: "Order Now",
@@ -351,7 +360,16 @@
                 footer_support: "Support", footer_terms: "Terms of Use", footer_privacy: "Privacy Policy", footer_faq: "FAQ",
                 footer_addr: "5F, 1234 Cheonho-daero, Gangdong-gu, Seoul, Korea", footer_ceo: "CEO: Kim Moms | Reg. No: 123-45-67890 | CS: 1588-1234",
                 brand_title: "Quality over Speed",
-                brand_desc: "Mom's Touch is not just fast food.\nWe insist on cooking after ordering.\n\nWith fresh ingredients and careful hands,\nwe provide a warm meal with a mother's heart.\n\nBeyond cost-effectiveness to satisfaction,\nKorea's representative burger brand, Mom's Touch."
+                brand_desc: "Mom's Touch is not just fast food.\nWe insist on cooking after ordering.\n\nWith fresh ingredients and careful hands,\nwe provide a warm meal with a mother's heart.\n\nBeyond cost-effectiveness to satisfaction,\nKorea's representative burger brand, Mom's Touch.",
+                // 세트 업그레이드 관련 추가
+                set_upgrade_title: "Set Menu Upgrade",
+                set_upgrade_msg: "Would you like to upgrade your Thigh Burger to a set?",
+                set_upgrade_info: "The Thigh Burger Set (₩6,900) includes the Thigh Burger, **Cajun Fries**, and **Coke**.",
+                set_upgrade_yes: "Yes, upgrade to set",
+                set_upgrade_no: "No, add a single item",
+                menu1_set: "Thigh Burger Set",
+                toast_add: "Added to cart!",
+                toast_order_complete: "Order completed!"
             },
             jp: { 
                 heroTitle: "圧倒的な大きさ、サイバーガー", heroSub: "注文後すぐに調理する新鮮な手作りバーガーの基準。", orderBtn: "注文する",
@@ -366,25 +384,55 @@
                 footer_support: "カスタマーサポート", footer_terms: "利用規約", footer_privacy: "個人情報処理方針", footer_faq: "よくある質問",
                 footer_addr: "ソウル特別市 江東区 千戸大路 1234, 5階 (株)マムズタッチ＆カンパニー", footer_ceo: "代表取締役: キム・マムス | 事業者番号: 123-45-67890",
                 brand_title: "速さよりも正しさを",
-                brand_desc: "マムズタッチは単なるファーストフードではありません。\n私たちは注文後の調理にこだわっています。\n\n新鮮な材料と丁寧な手つきで\n母の心を込めて温かい食事を提供します。\n\nコスパを超えた満足感まで、\n韓国を代表するバーガーブランド、マムズタッチです。"
+                brand_desc: "マムズタッチは単なるファーストフードではありません。\n私たちは注文後の調理にこだわっています。\n\n新鮮な材料と丁寧な手つきで\n母の心を込めて温かい食事を提供します。\n\nコスパを超えた満足感まで、\n韓国を代表するバーガーブランド、マムズタッチです。",
+                // 세트 업그레이드 관련 추가
+                set_upgrade_title: "セットメニューアップグレード",
+                set_upgrade_msg: "今すぐサイバーガーをセットにアップグレードしますか？",
+                set_upgrade_info: "サイバーガーセット（₩6,900）には、単品に加えて**ケイジャンポテト**と**コーラ**が含まれます。",
+                set_upgrade_yes: "はい、セットに変更します",
+                set_upgrade_no: "いいえ、単品でカートに入れます",
+                menu1_set: "サイバーガーセット",
+                toast_add: "カートに追加されました！",
+                toast_order_complete: "ご注文が完了しました!"
             }
         };
 
         const products = {
-            1: { nameKey: "menu1_name", descKey: "menu1_desc", price: 4600, img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop", nutrition: {w: 230, kcal: 594, p: 28, na: 1025} },
-            2: { nameKey: "menu3_name", descKey: "menu3_desc", price: 2000, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1450&auto=format&fit=crop", nutrition: {w: 100, kcal: 313, p: 4, na: 620} },
-            3: { nameKey: "menu4_name", descKey: "menu4_desc", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} }
+            1: { id: 1, nameKey: "menu1_name", descKey: "menu1_desc", price: 4600, img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop", nutrition: {w: 230, kcal: 594, p: 28, na: 1025} },
+            101: { id: 101, nameKey: "menu1_set", descKey: "menu1_desc", price: 6900, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1599&auto=format&fit=crop", nutrition: {w: 580, kcal: 974, p: 32, na: 1350} }, // 세트 추가
+            2: { id: 2, nameKey: "menu3_name", descKey: "menu3_desc", price: 2000, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1450&auto=format&fit=crop", nutrition: {w: 100, kcal: 313, p: 4, na: 620} },
+            3: { id: 3, nameKey: "menu4_name", descKey: "menu4_desc", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} }
         };
 
         let cart = []; 
         let currentProductId = null;
 
+        const setUpgradeModal = `
+            <div id="setUpgradeModal" class="modal">
+                <div class="modal-content" style="max-width:450px;">
+                    <h2 style="color:var(--secondary); margin-bottom:15px;" data-i18n="set_upgrade_title">세트 메뉴 업그레이드</h2>
+                    <p style="font-size:1.1rem; font-weight:bold; margin-bottom:15px;" data-i18n="set_upgrade_msg">지금 싸이버거를 세트로 업그레이드 하시겠어요?</p>
+                    <div style="background-color:var(--border); padding:15px; border-radius:10px; margin-bottom:20px; text-align:left;">
+                        <p data-i18n="set_upgrade_info">싸이버거 세트 (₩6,900)는 싸이버거 단품에 **케이준 양념감자**와 **콜라**가 추가됩니다.</p>
+                    </div>
+                    <div class="modal-btns">
+                        <button class="btn-modal btn-close" onclick="confirmSetUpgrade(false)" data-i18n="set_upgrade_no">아니요, 단품으로 담을게요</button>
+                        <button class="btn-modal btn-add" onclick="confirmSetUpgrade(true)" data-i18n="set_upgrade_yes">네, 세트로 바꿀게요</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
         document.addEventListener('DOMContentLoaded', () => {
+            // 기존 코드 유지 (언어, 테마 설정)
             const savedLang = localStorage.getItem('momstouch_lang');
             if(savedLang) changeLanguage(savedLang);
 
             const savedTheme = localStorage.getItem('momstouch_theme');
             if(savedTheme === 'dark') document.body.classList.add('dark-mode');
+            
+            // 세트 업그레이드 모달 DOM에 추가
+            document.body.insertAdjacentHTML('beforeend', setUpgradeModal);
         });
 
         const observer = new IntersectionObserver((entries) => {
@@ -410,8 +458,16 @@
             document.getElementById('brandModal').style.display = 'none';
         }
 
+        // **변경: 메뉴 상세 보기 함수**
         function showDetail(id) {
             currentProductId = id;
+            
+            if (id === 1) { // 싸이버거(ID: 1)를 클릭했을 경우
+                showSetUpgradePrompt(id);
+                return;
+            }
+
+            // 그 외 메뉴는 기존 로직 유지
             const p = products[id];
             const t = translations[currentLang];
             
@@ -424,27 +480,61 @@
             document.getElementById('nutProtein').innerText = p.nutrition.p;
             document.getElementById('nutNa').innerText = p.nutrition.na;
             
-            document.querySelector('[data-i18n="btn_cancel"]').innerText = t.btn_cancel;
-            document.querySelector('[data-i18n="btn_add"]').innerText = t.btn_add;
+            document.querySelector('#detailModal [data-i18n="btn_cancel"]').innerText = t.btn_cancel;
+            document.querySelector('#detailModal [data-i18n="btn_add"]').innerText = t.btn_add;
 
             document.getElementById('detailModal').style.display = 'flex';
         }
 
         function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
         
+        // **수정: 장바구니에 추가 함수 (싸이버거 제외)**
         function addToCartFromModal() {
-            if (currentProductId) {
+            if (currentProductId && currentProductId !== 1) { // 싸이버거(ID: 1)가 아닌 경우에만 실행
                 cart.push(currentProductId); 
                 updateCartUI();
                 closeDetail();
-                const btn = document.querySelector('.fab-cart');
-                btn.style.transform = "scale(1.3)";
-                setTimeout(() => btn.style.transform = "scale(1)", 200);
-                showToast("장바구니에 담겼습니다!");
             }
         }
-        function updateCartUI() { document.getElementById('cartCount').innerText = cart.length; }
+
+        // **신규: 세트 업그레이드 프롬프트 표시**
+        function showSetUpgradePrompt(baseId) {
+            currentProductId = baseId; // 1 (싸이버거 단품 ID) 저장
+            const modal = document.getElementById('setUpgradeModal');
+            const t = translations[currentLang];
+
+            // 텍스트 업데이트 (다국어 지원)
+            modal.querySelector('[data-i18n="set_upgrade_title"]').innerText = t.set_upgrade_title;
+            modal.querySelector('[data-i18n="set_upgrade_msg"]').innerText = t.set_upgrade_msg;
+            modal.querySelector('[data-i18n="set_upgrade_info"]').innerHTML = t.set_upgrade_info.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            modal.querySelector('[data-i18n="set_upgrade_no"]').innerText = t.set_upgrade_no;
+            modal.querySelector('[data-i18n="set_upgrade_yes"]').innerText = t.set_upgrade_yes;
+
+            modal.style.display = 'flex';
+        }
+
+        // **신규: 세트 업그레이드 결정**
+        function confirmSetUpgrade(isSet) {
+            document.getElementById('setUpgradeModal').style.display = 'none';
+            
+            const t = translations[currentLang];
+            let itemId = currentProductId;
+
+            if (isSet) {
+                itemId = 101; // 세트 메뉴 ID
+            } 
+            
+            cart.push(itemId);
+            updateCartUI();
+        }
+
+        // **수정: 장바구니 UI 업데이트**
+        function updateCartUI() { 
+            document.getElementById('cartCount').innerText = cart.length; 
+            if (cart.length > 0) showToast(translations[currentLang].toast_add);
+        }
         
+        // **수정: 장바구니 열기**
         function openCart() {
             const list = document.getElementById('cartList');
             const totalEl = document.getElementById('cartTotal');
@@ -458,7 +548,8 @@
                 cart.forEach((id, index) => {
                     const item = products[id];
                     total += item.price;
-                    const itemName = t[item.nameKey];
+                    // 세트일 경우 이름 다르게 표시
+                    const itemName = (id === 101) ? t.menu1_set : t[item.nameKey]; 
                     
                     list.innerHTML += `
                         <li class="cart-item">
@@ -470,9 +561,16 @@
                 });
             }
             totalEl.innerText = `Total: ₩${total.toLocaleString()}`;
+            
+            // 결제하기 버튼 텍스트 업데이트
+            document.querySelector('#cartModal [data-i18n="btn_pay"]').innerText = t.btn_pay;
+            document.querySelector('#cartModal [data-i18n="btn_more"]').innerText = t.btn_more;
+            document.querySelector('#cartModal [data-i18n="cart_title"]').innerText = t.cart_title;
+            
             document.getElementById('cartModal').style.display = 'flex';
         }
-        function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); openCart(); }
+
+        function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); openCart(); } // 장바구니에서 항목 제거
         function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         
@@ -492,7 +590,15 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) {
-                    el.innerText = t[key];
+                    // brand_desc는 줄바꿈을 위해 innerHTML 사용
+                    if (key === 'brand_desc') {
+                        el.innerHTML = t[key].replace(/\n/g, '<br>');
+                    } else if (key === 'set_upgrade_info') {
+                        // 볼드체 처리를 위해 innerHTML 사용
+                        el.innerHTML = t[key].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    } else {
+                        el.innerText = t[key];
+                    }
                 }
             });
 
@@ -502,6 +608,19 @@
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) { event.target.style.display = "none"; }
         }
+        
+        // 주문 완료 시 토스트 메시지 출력
+        document.querySelector('#cartModal .btn-add').onclick = () => {
+            if(cart.length > 0) {
+                showToast(translations[currentLang].toast_order_complete);
+                closeCart();
+                cart = [];
+                updateCartUI();
+            } else {
+                showToast(translations[currentLang].cart_empty);
+            }
+        };
     </script>
+
 </body>
 </html>
