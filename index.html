@@ -247,6 +247,15 @@
                     <div class="price">₩16,900</div>
                 </div>
             </div>
+            <div class="card reveal" onclick="showDetail(4)">
+                <div class="badge">SPICY</div>
+                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3ecc4310?q=80&w=1500&auto=format&fit=crop" alt="불싸이버거">
+                <div class="card-body">
+                    <h3 data-i18n="menu5_name">불싸이버거</h3>
+                    <p data-i18n="menu5_desc">화끈하게 매콤한 싸이버거의 변신!</p>
+                    <div class="price">₩4,900</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -329,6 +338,7 @@
                 menu1_name: "싸이버거", menu1_desc: "매콤바삭한 통다리살 패티가 통째로!",
                 menu3_name: "케이준 양념감자", menu3_desc: "한 번 맛보면 멈출 수 없는 감자튀김.",
                 menu4_name: "후라이드 치킨", menu4_desc: "겉바속촉의 정석, 맘스터치 치킨.",
+                menu5_name: "불싸이버거", menu5_desc: "화끈하게 매콤한 싸이버거의 변신!",
                 nav_story: "브랜드 스토리", nav_menu: "메뉴소개", nav_store: "매장찾기", nav_cs: "고객센터", nav_event: "이벤트", settings: "설정",
                 nut_w: "중량(g)", nut_k: "칼로리(kcal)", nut_p: "단백질(g)", nut_n: "나트륨(mg)",
                 btn_cancel: "취소", btn_add: "장바구니 담기", cart_title: "장바구니", cart_empty: "장바구니가 비었습니다.", btn_more: "더 담기", btn_pay: "결제하기",
@@ -353,6 +363,7 @@
                 menu1_name: "Thigh Burger", menu1_desc: "Spicy & crispy whole chicken thigh patty!",
                 menu3_name: "Cajun Fries", menu3_desc: "Crispy fries with special seasoning you can't stop.",
                 menu4_name: "Fried Chicken", menu4_desc: "Classic crispy chicken. The standard of taste.",
+                menu5_name: "Spicy Thigh Burger", menu5_desc: "The fiery transformation of the Thigh Burger!",
                 nav_story: "Brand Story", nav_menu: "Menu", nav_store: "Find Store", nav_cs: "Support", nav_event: "Events", settings: "Settings",
                 nut_w: "Weight(g)", nut_k: "Calories", nut_p: "Protein(g)", nut_n: "Sodium(mg)",
                 btn_cancel: "Cancel", btn_add: "Add to Cart", cart_title: "My Cart", cart_empty: "Your cart is empty.", btn_more: "Add More", btn_pay: "Checkout",
@@ -377,6 +388,7 @@
                 menu1_name: "サイバーガー", menu1_desc: "辛くてサクサクの鶏もも肉パティが丸ごと！",
                 menu3_name: "ケイジャンポテト", menu3_desc: "一度食べたら止まらないマムズタッチだけの味付けポテト。",
                 menu4_name: "フライドチキン", menu4_desc: "外はサクサク、中はジューシー。クラシックなチキン。",
+                menu5_name: "プルサイバーガー", menu5_desc: "ホットでスパイシーなサイバーガーの変身！",
                 nav_story: "ブランドストーリー", nav_menu: "メニュー", nav_store: "店舗検索", nav_cs: "お客様センター", nav_event: "イベント", settings: "設定",
                 nut_w: "重量(g)", nut_k: "カロリー", nut_p: "タンパク質(g)", nut_n: "ナトリウム(mg)",
                 btn_cancel: "キャンセル", btn_add: "カートに追加", cart_title: "カート", cart_empty: "カートは空です。", btn_more: "買い物を続ける", btn_pay: "お会計",
@@ -401,7 +413,8 @@
             1: { id: 1, nameKey: "menu1_name", descKey: "menu1_desc", price: 4600, img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=1500&auto=format&fit=crop", nutrition: {w: 230, kcal: 594, p: 28, na: 1025} },
             101: { id: 101, nameKey: "menu1_set", descKey: "menu1_desc", price: 6900, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1599&auto=format&fit=crop", nutrition: {w: 580, kcal: 974, p: 32, na: 1350} }, // 세트 추가
             2: { id: 2, nameKey: "menu3_name", descKey: "menu3_desc", price: 2000, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1450&auto=format&fit=crop", nutrition: {w: 100, kcal: 313, p: 4, na: 620} },
-            3: { id: 3, nameKey: "menu4_name", descKey: "menu4_desc", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} }
+            3: { id: 3, nameKey: "menu4_name", descKey: "menu4_desc", price: 16900, img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=1470&auto=format&fit=crop", nutrition: {w: 800, kcal: 2150, p: 140, na: 3200} },
+            4: { id: 4, nameKey: "menu5_name", descKey: "menu5_desc", price: 4900, img: "https://images.unsplash.com/photo-1594212699903-ec8a3ecc4310?q=80&w=1500&auto=format&fit=crop", nutrition: {w: 240, kcal: 620, p: 30, na: 1100} }
         };
 
         let cart = []; 
